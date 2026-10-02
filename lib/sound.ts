@@ -17,6 +17,16 @@ export type SoundEffect = keyof typeof SOUND_PATHS;
 
 let bgmAudio: HTMLAudioElement | null = null;
 let bgmMuted = false;
+let isAudioUnlocked = false;
+
+function unlockAudioPipeline() {
+  if (isAudioUnlocked || typeof window === "undefined") return;
+  isAudioUnlocked = true;
+
+  if (bgmAudio && bgmAudio.paused && !bgmMuted) {
+    bgmAudio.play().catch(() => {});
+  }
+}
 
 export function startBgm() {
   if (typeof window === "undefined") return;
@@ -27,22 +37,25 @@ export function startBgm() {
     bgmAudio.volume = 0.35; // Ambient volume level
   }
 
+  /* Try immediate autoplay */
   if (bgmAudio.paused && !bgmMuted) {
     bgmAudio.play().catch(() => {
-      /* Browser autoplay policies block audio before first user gesture */
-      const handleUserGesture = () => {
-        if (bgmAudio && bgmAudio.paused && !bgmMuted) {
-          bgmAudio.play().catch(() => {});
-        }
-        window.removeEventListener("pointerdown", handleUserGesture);
-        window.removeEventListener("touchstart", handleUserGesture);
-        window.removeEventListener("keydown", handleUserGesture);
-      };
-      window.addEventListener("pointerdown", handleUserGesture);
-      window.addEventListener("touchstart", handleUserGesture);
-      window.addEventListener("keydown", handleUserGesture);
+      /* Blocked by browser autoplay policy until user gesture */
     });
   }
+
+  /* Attach global capture listeners to unlock audio on ANY user touch/click/key */
+  const events = ["pointerdown", "touchstart", "mousedown", "click", "keydown"];
+  const handleFirstGesture = () => {
+    unlockAudioPipeline();
+    events.forEach((evt) => {
+      window.removeEventListener(evt, handleFirstGesture, true);
+    });
+  };
+
+  events.forEach((evt) => {
+    window.addEventListener(evt, handleFirstGesture, true);
+  });
 }
 
 export function toggleBgm(): boolean {
@@ -63,6 +76,9 @@ export function isBgmMuted(): boolean {
 
 export function playSound(effect: SoundEffect) {
   if (typeof window === "undefined") return;
+
+  /* If audio hasn't been unlocked yet by user gesture, unlock it now */
+  unlockAudioPipeline();
 
   try {
     const audio = new Audio(SOUND_PATHS[effect]);
