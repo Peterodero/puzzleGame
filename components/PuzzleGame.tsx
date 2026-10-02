@@ -61,13 +61,24 @@ export default function PuzzleGame({
     }
   }, [board, onSolved]);
 
+  /* Play game start chime */
+  useEffect(() => {
+    playSound("correct");
+  }, []);
+
   /* ─── Swap two tiles ────────────────────────────────────────────────────── */
   function swap(from: number, to: number) {
     if (from === to) { setSelectedSlot(null); return; }
-    playSound("swap");
     setBoard((prev) => {
       const next = [...prev];
       [next[from], next[to]] = [next[to], next[from]];
+
+      const newlyCorrect = next[from] === from || next[to] === to;
+      if (newlyCorrect) {
+        playSound("correct");
+      } else {
+        playSound("swap");
+      }
       return next;
     });
     setSelectedSlot(null);
@@ -160,7 +171,7 @@ export default function PuzzleGame({
               padding:  "clamp(0.25rem, 0.5vh, 0.45rem) clamp(0.6rem, 1.4vw, 1.1rem)",
             }}
           >
-            SIDE 3 · PUZZLE
+            PUZZLE
           </div>
           <span
             className="font-black text-emerald-400 bg-emerald-900/40 rounded-xl

@@ -199,7 +199,10 @@ export default function ResultScreen({
       {/* ── Play again CTA ─────────────────────────────────────────── */}
       <button
         id="btn-play-again"
-        onClick={onPlayAgain}
+        onClick={() => {
+          playSound("click");
+          onPlayAgain();
+        }}
         className={`rounded-full font-black uppercase tracking-wider text-white shadow-xl
                     transition-all duration-200 active:scale-95
                     ${won

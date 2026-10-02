@@ -64,7 +64,7 @@ export default function BrandScreen({ imageUrl, onContinue }: BrandScreenProps) 
           padding: "clamp(0.3rem, 0.8vh, 0.6rem) clamp(1rem, 2.5vw, 2rem)",
         }}
       >
-        {phase === "brand" ? "SIDE 1 · BRAND" : "SIDE 2 · YOUR TARGET"}
+        {phase === "brand" ? "BRAND" : "YOUR TARGET"}
       </div>
 
       {/* ── Instruction line (only shown once target is revealed) ── */}
