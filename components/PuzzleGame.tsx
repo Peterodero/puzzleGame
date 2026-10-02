@@ -309,7 +309,7 @@ export default function PuzzleGame({
       {/* Hint — bottom */}
       <p className="font-bold text-slate-400 pb-2"
          style={{ fontSize: "clamp(0.7rem, 1.4vw, 1rem)" }}>
-        💡 Drag a tile onto another to swap, or tap two tiles!
+        Drag a tile onto another to swap, or tap two tiles!
       </p>
     </div>
   );

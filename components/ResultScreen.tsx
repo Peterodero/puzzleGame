@@ -72,7 +72,7 @@ export default function ResultScreen({
           padding:  "clamp(0.5rem, 1.2vh, 0.9rem) clamp(1.5rem, 4vw, 3rem)",
         }}
       >
-        {won ? "🎉 VICTORY — REWARD UNLOCKED!" : "⏳ TIME EXPIRED"}
+        {won ? "VICTORY — REWARD UNLOCKED!" : "TIME EXPIRED"}
       </div>
 
       {/* ── Outcome headline & message ─────────────────────────────── */}
@@ -170,7 +170,7 @@ export default function ResultScreen({
           <p className="font-black tracking-widest uppercase"
              style={{ fontSize: "clamp(0.6rem, 1.2vw, 1rem)" }}>
             {won && awardedDiscount
-              ? `🏷️ UNLOCKED ${awardedDiscount}% PRICE DROP!`
+              ? `UNLOCKED ${awardedDiscount}% PRICE DROP!`
               : "TURN. MATCH. SMILE."}
           </p>
           <svg
