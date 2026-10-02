@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BrandScreen   from "@/components/BrandScreen";
 import PuzzleGame    from "@/components/PuzzleGame";
 import ResultScreen  from "@/components/ResultScreen";
 import type { GameStage } from "@/lib/types";
 import { discountForResult } from "@/lib/puzzle";
+import { isBgmMuted, startBgm, toggleBgm } from "@/lib/sound";
 
 const DURATION_SECONDS = 120;
 const TARGET_IMAGE     = "/target.jpg";
@@ -14,6 +15,17 @@ export default function Home() {
   const [stage,       setStage]       = useState<GameStage>("brand");
   const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
   const [runKey,      setRunKey]      = useState(0);
+  const [muted,       setMuted]       = useState(false);
+
+  /* Start endless background music loop on app launch */
+  useEffect(() => {
+    startBgm();
+  }, []);
+
+  const handleToggleSound = () => {
+    const isMutedNow = toggleBgm();
+    setMuted(isMutedNow);
+  };
 
   /* Brand (incl. reveal + countdown + breakup) -> Playing */
   const handleStartGame = useCallback(() => {
@@ -45,12 +57,22 @@ export default function Home() {
           </span>
         </div>
 
-        <span className="font-bold text-slate-300 uppercase tracking-widest bg-slate-900/80 backdrop-blur-md rounded-full border border-white/10 px-4 py-1.5" style={{ fontSize: "clamp(0.6rem, 1vw, 0.85rem)" }}>
-          {stage === "brand"   && "Welcome"}
-          {stage === "playing" && "Puzzle Challenge"}
-          {stage === "won"     && "Victory!"}
-          {stage === "lost"    && "Time Up"}
-        </span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleToggleSound}
+            aria-label="Toggle Sound"
+            className="flex items-center justify-center p-2 rounded-full bg-slate-900/80 border border-white/10 text-white hover:bg-slate-800 transition-colors"
+          >
+            {muted ? "🔇" : "🔊"}
+          </button>
+
+          <span className="font-bold text-slate-300 uppercase tracking-widest bg-slate-900/80 backdrop-blur-md rounded-full border border-white/10 px-4 py-1.5" style={{ fontSize: "clamp(0.6rem, 1vw, 0.85rem)" }}>
+            {stage === "brand"   && "Welcome"}
+            {stage === "playing" && "Puzzle Challenge"}
+            {stage === "won"     && "Victory!"}
+            {stage === "lost"    && "Time Up"}
+          </span>
+        </div>
       </header>
 
       <div className="flex-1 min-h-0 flex flex-col items-center justify-center px-4 py-1">
