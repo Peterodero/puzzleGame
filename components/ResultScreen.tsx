@@ -53,9 +53,12 @@ export default function ResultScreen({
 
   return (
     <div
-      className={`w-full flex flex-col items-center text-center
+      className={`w-full flex flex-col items-center text-center mx-auto
                   ${won ? "animate-pop-in" : "animate-shake"}`}
-      style={{ gap: "clamp(0.8rem, 2vh, 1.8rem)", maxWidth: "min(900px, 90vw)" }}
+      style={{
+        gap: "clamp(0.4rem, 1vh, 0.8rem)",
+        maxWidth: "min(90vw, calc(44vh + 1.5rem), 580px)",
+      }}
     >
 
       {/* ── Status banner ─────────────────────────────────────────── */}

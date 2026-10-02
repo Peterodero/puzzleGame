@@ -134,19 +134,22 @@ export default function PuzzleGame({
 
   return (
     <div
-      className="w-full flex flex-col items-center animate-pop-in"
-      style={{ gap: "clamp(0.5rem, 1.2vh, 1.2rem)" }}
+      className="w-full flex flex-col items-center animate-pop-in mx-auto"
+      style={{
+        gap: "clamp(0.3rem, 0.9vh, 0.75rem)",
+        maxWidth: "min(90vw, calc(44vh + 1.5rem), 580px)",
+      }}
     >
       {/* ── Top bar ──────────────────────────────────────────────── */}
       <div className="w-full flex items-center justify-between"
-           style={{ gap: "clamp(0.5rem, 1.5vw, 1.5rem)" }}>
+           style={{ gap: "clamp(0.4rem, 1vw, 1rem)" }}>
 
-        <div className="flex items-center" style={{ gap: "clamp(0.4rem, 1vw, 0.8rem)" }}>
+        <div className="flex items-center" style={{ gap: "clamp(0.3rem, 0.8vw, 0.6rem)" }}>
           <div
             className="rounded-full bg-[#e30613] text-white font-black uppercase tracking-widest shrink-0"
             style={{
-              fontSize: "clamp(0.55rem, 1.1vw, 0.85rem)",
-              padding:  "clamp(0.3rem, 0.7vh, 0.55rem) clamp(0.7rem, 1.8vw, 1.4rem)",
+              fontSize: "clamp(0.5rem, 0.95vw, 0.75rem)",
+              padding:  "clamp(0.25rem, 0.5vh, 0.45rem) clamp(0.6rem, 1.4vw, 1.1rem)",
             }}
           >
             SIDE 3 · PUZZLE
@@ -155,8 +158,8 @@ export default function PuzzleGame({
             className="font-black text-emerald-400 bg-emerald-900/40 rounded-xl
                        border border-emerald-700/50 shrink-0"
             style={{
-              fontSize: "clamp(0.7rem, 1.3vw, 0.95rem)",
-              padding:  "clamp(0.25rem, 0.6vh, 0.55rem) clamp(0.6rem, 1.3vw, 1.1rem)",
+              fontSize: "clamp(0.65rem, 1.1vw, 0.85rem)",
+              padding:  "clamp(0.2rem, 0.4vh, 0.45rem) clamp(0.5rem, 1.1vw, 0.9rem)",
             }}
           >
             {correctCount}/{TILE_COUNT} ✓
@@ -178,26 +181,26 @@ export default function PuzzleGame({
         {/* Unit header */}
         <div
           className="bg-[#e30613] text-center text-white border-b-2 border-red-700"
-          style={{ padding: "clamp(0.35rem, 0.9vh, 0.75rem) 2rem" }}
+          style={{ padding: "clamp(0.3rem, 0.8vh, 0.6rem) 1.5rem" }}
         >
           <p className="font-black italic tracking-tight leading-none"
-             style={{ fontSize: "clamp(1.4rem, 3.2vw, 2.6rem)" }}>
+             style={{ fontSize: "clamp(1.3rem, 2.8vw, 2.2rem)" }}>
             Colgate
           </p>
           <p className="font-bold tracking-widest uppercase opacity-90"
-             style={{ fontSize: "clamp(0.5rem, 0.95vw, 0.8rem)", marginTop: "0.1rem" }}>
+             style={{ fontSize: "clamp(0.45rem, 0.8vw, 0.7rem)", marginTop: "0.1rem" }}>
             MORE TO SMILE ABOUT
           </p>
         </div>
 
         {/* 4×4 puzzle grid */}
         <div className="bg-neutral-200 flex justify-center"
-             style={{ padding: "clamp(3px, 0.4vh, 8px)" }}>
+             style={{ padding: "clamp(2px, 0.3vh, 6px)" }}>
           <div
             className="grid grid-cols-4 bg-neutral-400 rounded-xl"
             style={{
-              width:  "min(90vw, 100vh, 900px)",
-              height: "min(90vw, 100vh, 900px)",
+              width:  "min(85vw, 44vh, 560px)",
+              height: "min(85vw, 44vh, 560px)",
               gap:     "clamp(2px, 0.25vmin, 4px)",
               padding: "clamp(2px, 0.25vmin, 4px)",
               gridTemplateRows: "repeat(4, 1fr)",

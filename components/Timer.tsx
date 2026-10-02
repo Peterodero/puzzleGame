@@ -51,7 +51,7 @@ export default function Timer({
       className="shrink-0 flex flex-col items-center justify-center
                  bg-white rounded-2xl shadow-lg border border-neutral-200"
       style={{
-        minWidth: "clamp(140px, 18vw, 260px)",
+        minWidth: "clamp(140px, 10vw, 260px)",
         padding: "clamp(0.6rem, 1.5vh, 1.2rem) clamp(1rem, 2.5vw, 2rem)",
       }}
     >

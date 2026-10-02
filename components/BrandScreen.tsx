@@ -47,16 +47,19 @@ export default function BrandScreen({ imageUrl, onContinue }: BrandScreenProps) 
 
   return (
     <div
-      className="w-full flex flex-col items-center animate-pop-in text-center"
-      style={{ gap: "clamp(1rem, 2.5vh, 2rem)", maxWidth: "min(900px, 90vw)" }}
+      className="w-full flex flex-col items-center animate-pop-in text-center mx-auto"
+      style={{
+        gap: "clamp(0.3rem, 1vh, 0.8rem)",
+        maxWidth: "min(90vw, calc(44vh + 1.5rem), 580px)",
+      }}
     >
       {/* ── Badge ─────────────────────────────────────────────── */}
       <div
         className="rounded-full bg-[#e30613] text-white font-black uppercase tracking-widest
                    shadow-lg shadow-red-900/40"
         style={{
-          fontSize: "clamp(0.75rem, 1.5vw, 1.1rem)",
-          padding: "clamp(0.5rem, 1.2vh, 0.9rem) clamp(1.5rem, 4vw, 3rem)",
+          fontSize: "clamp(0.65rem, 1.2vw, 0.95rem)",
+          padding: "clamp(0.3rem, 0.8vh, 0.6rem) clamp(1rem, 2.5vw, 2rem)",
         }}
       >
         {phase === "brand" ? "SIDE 1 · BRAND" : "SIDE 2 · YOUR TARGET"}
@@ -66,7 +69,7 @@ export default function BrandScreen({ imageUrl, onContinue }: BrandScreenProps) 
       <p
         className={`font-bold ${breaking ? "text-orange-400" : "text-white"} transition-colors duration-300`}
         style={{
-          fontSize: "clamp(0.9rem, 2vw, 1.4rem)",
+          fontSize: "clamp(0.75rem, 1.4vw, 1.1rem)",
           minHeight: phase === "brand" ? 0 : undefined,
         }}
       >
@@ -82,24 +85,24 @@ export default function BrandScreen({ imageUrl, onContinue }: BrandScreenProps) 
 
         <div
           className="bg-[#e30613] text-center text-white border-b-2 border-red-700"
-          style={{ padding: "clamp(0.75rem, 2vh, 1.5rem) 2rem" }}
+          style={{ padding: "clamp(0.35rem, 0.9vh, 0.75rem) 1.5rem" }}
         >
-          <p className="font-black italic tracking-tight leading-none" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
+          <p className="font-black italic tracking-tight leading-none" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.6rem)" }}>
             Colgate
           </p>
-          <p className="font-bold tracking-widest uppercase opacity-90" style={{ fontSize: "clamp(0.65rem, 1.2vw, 1rem)", marginTop: "0.25rem" }}>
+          <p className="font-bold tracking-widest uppercase opacity-90" style={{ fontSize: "clamp(0.5rem, 0.85vw, 0.75rem)", marginTop: "0.15rem" }}>
             MORE TO SMILE ABOUT
           </p>
         </div>
 
-        <div className="bg-neutral-200 flex justify-center" style={{ padding: "clamp(0.5rem, 1.2vh, 1rem)" }}>
+        <div className="bg-neutral-200 flex justify-center" style={{ padding: "clamp(2px, 0.3vh, 6px)" }}>
           <div
             className="grid grid-cols-4 bg-neutral-400 rounded-xl mx-auto"
             style={{
-              width: "min(85vw, 100vh, 760px)",
-              height: "min(85vw, 100vh, 760px)",
-              gap: "clamp(2px, 0.3vmin, 5px)",
-              padding: "clamp(2px, 0.3vmin, 5px)",
+              width: "min(85vw, 44vh, 560px)",
+              height: "min(85vw, 44vh, 560px)",
+              gap: "clamp(2px, 0.25vmin, 4px)",
+              padding: "clamp(2px, 0.25vmin, 4px)",
               gridTemplateRows: "repeat(4, 1fr)",
               perspective: "1200px",
               overflow: "visible",
