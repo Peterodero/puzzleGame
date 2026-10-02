@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { playSound } from "@/lib/sound";
 
 const GRID_SIZE = 4;
 const HOLD_MS = 1500;        // how long the red brand grid sits still
@@ -37,6 +38,7 @@ export default function BrandScreen({ imageUrl, onContinue }: BrandScreenProps) 
   function triggerBreakup() {
     if (triggeredBreakRef.current) return;
     triggeredBreakRef.current = true;
+    playSound("breakup");
     setPhase("breaking");
     const lastRowDone = (3 * ROW_STAGGER + 0.52) * 1000;
     setTimeout(onContinue, lastRowDone + 150);

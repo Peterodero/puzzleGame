@@ -9,6 +9,7 @@ import {
   tileBackgroundStyle,
 } from "@/lib/puzzle";
 import Timer from "./Timer";
+import { playSound } from "@/lib/sound";
 
 interface PuzzleGameProps {
   imageUrl: string;
@@ -55,6 +56,7 @@ export default function PuzzleGame({
   /* ─── Win check ─────────────────────────────────────────────────────────── */
   useEffect(() => {
     if (board.length === TILE_COUNT && board.every((id, i) => id === i)) {
+      playSound("win");
       onSolved();
     }
   }, [board, onSolved]);
@@ -62,6 +64,7 @@ export default function PuzzleGame({
   /* ─── Swap two tiles ────────────────────────────────────────────────────── */
   function swap(from: number, to: number) {
     if (from === to) { setSelectedSlot(null); return; }
+    playSound("swap");
     setBoard((prev) => {
       const next = [...prev];
       [next[from], next[to]] = [next[to], next[from]];
@@ -73,9 +76,14 @@ export default function PuzzleGame({
 
   /* ─── Tap-select / tap-swap ─────────────────────────────────────────────── */
   function tapSelect(idx: number) {
-    if (selectedSlot === null)      setSelectedSlot(idx);
-    else if (selectedSlot === idx)  setSelectedSlot(null);
-    else                            swap(selectedSlot, idx);
+    if (selectedSlot === null) {
+      playSound("tap");
+      setSelectedSlot(idx);
+    } else if (selectedSlot === idx) {
+      setSelectedSlot(null);
+    } else {
+      swap(selectedSlot, idx);
+    }
   }
 
   /* Update stable refs so global listeners use the latest closures */
