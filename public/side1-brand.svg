@@ -1,0 +1,5 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#e30613"/>
+  <text x="400" y="380" font-family="Arial Black, Arial, sans-serif" font-size="120" font-weight="900" font-style="italic" fill="#ffffff" text-anchor="middle">Colgate</text>
+  <path d="M 240 430 Q 400 550 560 430" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round"/>
+</svg>

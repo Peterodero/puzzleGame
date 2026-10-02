@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-colgate-red: #e30613;
+  --color-colgate-red-dark: #b8040f;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+/* ─── Root: fill screen, allow scroll when content is taller ────────── */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;   /* no horizontal scroll ever */
+  touch-action: manipulation;
+}
+
+#__next {
+  min-height: 100%;
+}
+
+body {
+  background: radial-gradient(ellipse at 50% 0%, #1e1b4b 0%, #0f172a 50%, #030712 100%);
+  color: #f8fafc;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────── */
+@keyframes pop-in {
+  0% {
+    transform: scale(0.88) translateY(32px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes shake {
+  0%,  100% { transform: translateX(0); }
+  18%, 55%  { transform: translateX(-14px); }
+  36%, 73%  { transform: translateX(14px); }
+}
+
+.animate-shake {
+  animation: shake 0.55s ease-in-out both;
+}
+
+@keyframes victory-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 40px  rgba(16, 185, 129, 0.55),
+      0 0 90px  rgba(16, 185, 129, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 80px  rgba(16, 185, 129, 0.95),
+      0 0 160px rgba(16, 185, 129, 0.5);
+  }
+}
+
+.animate-victory-glow {
+  animation: victory-glow 1.6s ease-in-out infinite;
+}
+
+@keyframes defeat-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 35px rgba(220, 38, 38, 0.45),
+      0 0 70px  rgba(220, 38, 38, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 70px  rgba(220, 38, 38, 0.75),
+      0 0 130px rgba(220, 38, 38, 0.38);
+  }
+}
+
+.animate-defeat-pulse {
+  animation: defeat-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ping-dot {
+  0%     { transform: scale(1);   opacity: 0.75; }
+  75%    { transform: scale(2.2); opacity: 0; }
+  100%   { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes badge-award {
+  0%   { transform: scale(0.6) rotate(-10deg); opacity: 0; }
+  60%  { transform: scale(1.12) rotate(2deg);  opacity: 1; }
+  100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+}
+
+.animate-badge-award {
+  animation: badge-award 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
